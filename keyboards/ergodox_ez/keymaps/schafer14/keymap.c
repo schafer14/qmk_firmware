@@ -11,19 +11,6 @@ enum custom_keycodes {
   RGB_SLD
 };
 
-enum combos {
-  FD_TAB,
-  JK_ESC
-};
-
-const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM fd_combo[] = {KC_F, KC_D, COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-  [FD_TAB] = COMBO(fd_combo, KC_TAB),
-  [JK_ESC] = COMBO(jk_combo, KC_ESC)
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
@@ -56,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                                                            ALT_T(KC_APP), KC_LGUI,
                                                                           KC_HOME,
-                                                        KC_BSPC, KC_BSPC, KC_LGUI,
+                                                        KC_BSPC, MO(1), KC_LGUI,
 
 
   // right hand
@@ -94,8 +81,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [SYMB] = LAYOUT_ergodox(
   // left hand
   VRSN,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_TRNS,
-  KC_TRNS, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE, KC_TRNS,
-  KC_TRNS, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,
+  KC_TRNS, KC_EXLM, KC_AT,  KC_UP, KC_RCBR, KC_PIPE, KC_TRNS,
+  KC_TRNS, KC_HASH, KC_LEFT,  KC_DOWN, KC_RIGHT, KC_GRV,
   KC_TRNS, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD, KC_TRNS,
   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
 
@@ -110,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_0,    KC_DOT,  KC_0,    KC_EQL,  KC_TRNS,
   RGB_TOG, RGB_SLD,
   KC_TRNS,
-  KC_TRNS, RGB_HUD, RGB_HUI
+  KC_TRNS, KC_LPRN, KC_RPRN
 ),
 /* Keymap 2: Media and mouse keys
  *
