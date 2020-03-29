@@ -2,6 +2,19 @@
 
 extern keymap_config_t keymap_config;
 
+enum {
+  TD_ESC_HOME = 0,
+  TD_TAB_END = 1
+};
+
+//Tap Dance Definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+  //Tap once for Esc, twice for Caps Lock
+  [TD_ESC_HOME]  = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_HOME),
+  [TD_TAB_END]  = ACTION_TAP_DANCE_DOUBLE(KC_TAB, KC_END)
+// Other declarations would go here, separated by commas, if you have them
+};
+
 enum combos {
   JK_TAB
 };
@@ -11,7 +24,6 @@ const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
   [JK_TAB] = COMBO(jk_combo, KC_ESC)
 };
-
 
 #define _QWERTY 0
 #define _LOWER 1
@@ -36,9 +48,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      C(KC_B), KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT,CTL_T(KC_Z), KC_X,    KC_C,    KC_V,    KC_B,    RAISE,       KC_ESC,  KC_N,    KC_M,    KC_COMM, KC_DOT, CTL_T(KC_SLSH), KC_RSFT,
+     KC_LSFT,CTL_T(KC_Z), KC_X,    KC_C,    KC_V,    KC_B,    RAISE,       TD(TD_ESC_HOME),KC_N,    KC_M,    KC_COMM, KC_DOT, CTL_T(KC_SLSH), KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    LOWER,  KC_BSPC,   KC_LGUI,                   KC_TAB,  KC_SPC,   KC_ENT
+                                    LOWER,  KC_BSPC,   KC_LGUI,             TD(TD_TAB_END),KC_SPC,   KC_ENT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
   
