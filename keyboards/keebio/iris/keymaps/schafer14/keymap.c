@@ -2,6 +2,17 @@
 
 extern keymap_config_t keymap_config;
 
+enum combos {
+  JK_TAB
+};
+
+const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [JK_TAB] = COMBO(jk_combo, KC_ESC)
+};
+
+
 #define _QWERTY 0
 #define _LOWER 1
 #define _RAISE 2
@@ -19,13 +30,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_LPRN,    KC_RPRN,    KC_MINS,
+     KC_EQL,  KC_GRAVE,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_LPRN,    KC_RPRN,    KC_MINS,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     C(KC_B), KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+     KC_TAB, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+     C(KC_B), KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_GRAVE,CTL_T(KC_Z), KC_X,    KC_C,    KC_V,    KC_B,    RAISE,       KC_ESC,  KC_N,    KC_M,    KC_COMM, KC_DOT, CTL_T(KC_SLSH), KC_RSFT,
+     KC_LSFT,CTL_T(KC_Z), KC_X,    KC_C,    KC_V,    KC_B,    RAISE,       KC_ESC,  KC_N,    KC_M,    KC_COMM, KC_DOT, CTL_T(KC_SLSH), KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     LOWER,  KC_BSPC,   KC_LGUI,                   KC_TAB,  KC_SPC,   KC_ENT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -41,10 +52,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      RGB_TOG,  _______, KC_LEFT, KC_DOWN, KC_RIGHT,   KC_LBRC,                            KC_RBRC, KC_4,   KC_5,    KC_6,   KC_PLUS, KC_HOME,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     RGB_MOD, _______, _______, _______, KC_DOWN, KC_LCBR, KC_LPRN,          KC_RPRN, KC_RCBR, KC_1,   KC_2,    KC_3,   KC_MINS, KC_END,
+     RGB_MOD, _______, _______, _______, KC_DOWN, KC_LCBR, KC_LPRN,          KC_PGUP, KC_RCBR, KC_1,   KC_2,    KC_3,   KC_MINS, KC_END,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    _______, _______, KC_DEL,                    KC_DEL,  KC_LBRC, KC_RBRC
+                                    _______, _______, KC_DEL,                    KC_PGDN,  KC_LBRC, KC_0
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+
   ),
 
   [_RAISE] = LAYOUT(
